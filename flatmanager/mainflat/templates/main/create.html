@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Создать обьявление
+{% endblock %}
+
+
+{% block content %}
+    <h1>Создать обьявление</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.title }}<br>
+    {{ form.flat }}<br>
+    {{ form.image }}<br>
+    <button type="submit" class="btn btn-success">Добавить</button>
+    <span>{{ error }}</span>
+</form>
+{% endblock %}
