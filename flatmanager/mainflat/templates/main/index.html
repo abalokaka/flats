@@ -13,7 +13,7 @@
         <div class="alert alert-warning mt-2">
             <h3>{{ el.title }}</h3>
             <p>{{ el.flat }}</p>
-            <img src="{{game.image_url}}" class="img-fluid rounded-start" alt="...">
+            <img src="{{ el.image}}" alt="connect" style="max-height:300px">
         </div>
         {% endfor %}
     {% else %}
