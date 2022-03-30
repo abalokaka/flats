@@ -54,7 +54,7 @@ def login_user(request):
                 return HttpResponse('Invalid login')
     else:
         form = LoginForm()
-    return render(request, 'form.html', {'form': form})
+    return render(request, 'main/form.html', {'form': form})
 
 
 def register_user(request):
@@ -64,11 +64,10 @@ def register_user(request):
             User.objects.create_user(**form.cleaned_data)
             return redirect("login_user")
         else:
-            print(form.errors)
-        return HttpResponse('Invalid registration')
+            return HttpResponse('Invalid registration')
     else:
         form = RegisterForm()
-        return render(request, "form.html", {"form": form})
+        return render(request, "main/form.html", {"form": form})
 
 
 def logout_user(request):

@@ -1,31 +1,43 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.forms import TextInput, Textarea, ModelForm
 
 from .models import Flat
 from django import forms
-
 
 
 def imghdr(attrs):
     pass
 
 
-class FlatForm(forms.Form):
-    name = forms.CharField(label='Введите название', max_length=255)
-    developer = forms.CharField(label='Developer', max_length=255)
-    publisher = forms.CharField(label='Publisher', max_length=255)
-    description = forms.CharField(label='Description', widget=forms.Textarea)
-    image = forms.ImageField()
+class FlatForm(ModelForm):
+    class Meta:
+        model = Flat
+        fields = ['title', 'flat', 'image']
+        widgets = {'title': TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': "Введите название"
+        }),
+            'flat': Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите описание"
+        }),
+            'image': imghdr(attrs={
+                'class': 'form-control',
+                'placeholder': "Добавте фото"
+        })
+        }
 
 
-class LoginForm(FlatForm):
+class LoginForm(forms.Form):
     username = forms.CharField(label='Login')
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
 
-class RegisterForm(FlatForm):
+class RegisterForm(forms.Form):
     username = forms.CharField(label='Username')
     email = forms.EmailField(label='Email')
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
+
 
 class ReviewForm(forms.Form):
     text = forms.CharField(label="Text", widget=forms.Textarea)
