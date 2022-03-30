@@ -16,12 +16,17 @@
         <span class="fs-3">Flats&Rooms</span>
       </a>
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 text-dark text-decoration-none" href={% url 'home' %}>Главная</a>
-          <a class="me-3 py-2 text-dark text-decoration-none" href={% url 'about' %}>Контакты</a>
-          <a class="me-3 py-2 text-dark text-decoration-none" href={% url 'hellp' %}>Помощь</a>
-          <a class="me-3 py-2 text-dark text-decoration-none" href={% url 'create' %}>Создать обьявление</a>
-
-
+        <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'home' %}">Главная</a>
+          <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'about' %}">Контакты</a>
+          <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'hellp' %}">Помощь</a>
+          <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'create' %"}>Создать обьявление</a>
+          {% if not user.is_authenticated %}
+          <a class="nav-link" href="{% url 'login_user' %}">Login</a>
+          <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url 'logout_user' %}">Logout</a>
+          {% endif %}
                       </nav>
     </div>
 
