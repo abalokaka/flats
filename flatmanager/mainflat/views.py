@@ -21,21 +21,32 @@ def hellp(request):
 
 
 def create(request):
-    error = ''
+    """Process images uploaded by users"""
     if request.method == 'POST':
-        form = FlatForm(request.POST)
+        form = FlatForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
-        else:
-            error = "Форма не коректна"
-
-    form = FlatForm()
-    context = {
-        'form': form,
-        'error': error
-    }
-    return render(request, 'main/create.html', context)
+            # Get the current instance object to display in the template
+            img_obj = form.instance
+            return render(request, 'main/create.html', {'form': form, 'img_obj': img_obj})
+    else:
+        form = FlatForm()
+    return render(request, 'main/create.html', {'form': form})
+    # error = ''
+    # if request.method == 'POST':
+    #     form = FlatForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('home')
+    #     else:
+    #         error = "Форма не коректна"
+    #
+    # form = FlatForm()
+    # context = {
+    #     'form': form,
+    #     'error': error
+    # }
+    # return render(request, 'main/create.html', context)
 
 
 def login_user(request):

@@ -5,27 +5,10 @@ from .models import Flat
 from django import forms
 
 
-def imghdr(attrs):
-    pass
-
-
 class FlatForm(ModelForm):
     class Meta:
         model = Flat
         fields = ['title', 'flat', 'image']
-        widgets = {'title': TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': "Введите название"
-        }),
-            'flat': Textarea(attrs={
-                'class': 'form-control',
-                'placeholder': "Введите описание"
-        }),
-            'image': imghdr(attrs={
-                'class': 'form-control',
-                'placeholder': "Добавте фото"
-        })
-        }
 
 
 class LoginForm(forms.Form):
